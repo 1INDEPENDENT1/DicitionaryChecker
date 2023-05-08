@@ -1,0 +1,29 @@
+<jwrapper>
+<BuildOutputFolder>/home/independent/dictionary/JWrapperBuild</BuildOutputFolder>
+<BundleName>Dictionary</BundleName>
+<SplashPNG>/home/independent/.JWrapper/JWrapper-JWrapperApp/JWrapper-JWrapperApp-00069494495-complete/resources/jwlogo256.png</SplashPNG>
+<BundleLogoPNG>/home/independent/.JWrapper/JWrapper-JWrapperApp/JWrapper-JWrapperApp-00069494495-complete/resources/jwlogo256.png</BundleLogoPNG>
+<InstallType>CurrentUser</InstallType>
+<App>
+  <Name>Dictionary</Name>
+  <LogoPNG>/home/independent/.JWrapper/JWrapper-JWrapperApp/JWrapper-JWrapperApp-00069494495-complete/resources/jwlogo256.png</LogoPNG>
+  <MainClass>src.Main</MainClass>
+</App>
+<SupportedLanguages>en</SupportedLanguages>
+<Windows32JRE>/home/independent/dictionary/jwrapperJREs/win32/jre1.8.0_162</Windows32JRE>
+<Windows64JRE>/home/independent/dictionary/jwrapperJREs/win64/jre1.8.0_162</Windows64JRE>
+<Linux32JRE>/home/independent/dictionary/jwrapperJREs/linux/jre1.8.0_162</Linux32JRE>
+<Linux64JRE>/home/independent/dictionary/jwrapperJREs/linuxx64/jre1.8.0_162</Linux64JRE>
+<Mac64JRE>/home/independent/dictionary/jwrapperJREs/macos64/jre1.8.0_162.jre</Mac64JRE>
+<SkipLinuxARM32>true</SkipLinuxARM32>
+<NoStripJREs>true</NoStripJREs>
+<Pack200Effort>0</Pack200Effort>
+<WindowsElevation>None</WindowsElevation>
+<WindowsElevationUiAccess>true</WindowsElevationUiAccess>
+<File classpath='yes'>/home/independent/dictionary/out/artifacts/dictionary_jar/dictionary.jar</File>
+<JvmOptions>
+</JvmOptions>
+<!-- IMPORTANT place custom content BELOW this comment for compatibility with JW App -->
+
+
+</jwrapper>
