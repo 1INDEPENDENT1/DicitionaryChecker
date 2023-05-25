@@ -1,20 +1,30 @@
-public class Word {
-    private final String englishTrans;
-    private final String russianTrans;
+import java.util.List;
 
-    public Word(String englishTrans, String russianTrans){
+public class Word {
+    private final List<String> englishTrans;
+    private final List<String> foreignTrans;
+
+    public Word(List<String> englishTrans, List<String> foreignTrans){
         this.englishTrans = englishTrans;
-        this.russianTrans = russianTrans;
+        this.foreignTrans = foreignTrans;
     }
 
-    public String getEnglishTrans() {
+    public List<String> getEnglishTrans() {
         return englishTrans;
     }
 
-    public String getRussianTrans() { return russianTrans; }
+    public List<String> getForeignTrans() { return foreignTrans; }
+
+    public void setEnglishTransTrans(String englishWord){
+        foreignTrans.add(englishWord);
+    }
+
+    public void setForeignTrans(String foreignWord){
+        foreignTrans.add(foreignWord);
+    }
 
     @Override
     public String toString() {
-        return englishTrans + " - " + russianTrans;
+        return englishTrans + " - " + foreignTrans;
     }
 }

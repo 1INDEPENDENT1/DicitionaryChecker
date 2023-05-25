@@ -5,48 +5,76 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.print("Введите путь до текстового файла: ");
-        String dictionary = new Scanner(System.in).nextLine();
+        System.out.print("Enter the path to the text file: ");
+        String dictionary = new Scanner(System.in).nextLine().trim();
         Converter converter = new Converter();
         converter.textToArray(dictionary);
         Set<Integer> checkRepeat = new TreeSet<>();
         List<Word> wrongWords = new ArrayList<>();
+        boolean isMistake;
+
         while (checkRepeat.size() != converter.getAllWords().size()) {
             int random = (int) (Math.random() * (converter.getAllWords().size()));
             if (checkRepeat.contains(random)) {
                 continue;
             }
             checkRepeat.add(random);
-            int engOrRus = (int) (Math.random() * ((2 - 1) + 1) + 1);
-            if (engOrRus == 1) {
-                System.out.print("Переведите слово: " + converter.getWord(random).getEnglishTrans() + " - ");
-                String input = new Scanner(System.in).nextLine();
-                Pattern pattern = Pattern.compile(converter.getWord(random).getRussianTrans());
-                Matcher matcher = pattern.matcher(input);
+            int engOrOther = (int) (Math.random() * ((2 - 1) + 1) + 1);
+            if (engOrOther == 1) {
+                System.out.print("Translate the word: " + converter.getWord(random).getEnglishTrans() + " - ");
+                String input = new Scanner(System.in).nextLine().trim().toLowerCase();
                 if (input.equals("break system")){
                     break;
                 }
-                if (matcher.find()) {
-                    System.out.println("Правильно");
-                } else {
-                    wrongWords.add(converter.getWord(random));
-                    System.out.println("Не правильно! " + "Правильный вариант: " + converter.getWord(random));
+                isMistake = true;
+                for(String world : converter.getWord(random).getForeignTrans()){
+                    Pattern pattern = Pattern.compile(world);
+                    Matcher matcher = pattern.matcher(input);
+                    if (matcher.find()) {
+                        System.out.println("Right");
+                        isMistake = false;
+                    }
+                }
+                if(isMistake){
+                    System.out.println("Wrong! " + "Correct option: " + converter.getWord(random));
+                    System.out.println("Do you want to add this translation?(Y/N)");
+                    String inputAgree = new Scanner(System.in).nextLine().trim().toLowerCase();
+                    if (inputAgree.equals("y")){
+                        converter.getWord(random).setForeignTrans(input);
+                        System.out.println("The word was added into dictionary");
+                    }else {
+                        wrongWords.add(converter.getWord(random));
+                        System.out.println("The word was entered into the mistake dictionary");
+                    }
                 }
             }
 
-            if(engOrRus == 2){
-                System.out.print("Переведите слово: " + converter.getWord(random).getRussianTrans() + " - ");
-                String input = new Scanner(System.in).nextLine();
-                Pattern pattern = Pattern.compile(converter.getWord(random).getEnglishTrans());
-                Matcher matcher = pattern.matcher(input);
+            if(engOrOther == 2){
+                System.out.print("Translate the word: " + converter.getWord(random).getForeignTrans() + " - ");
+                String input = new Scanner(System.in).nextLine().trim().toLowerCase();
                 if (input.equals("break system")){
                     break;
                 }
-                if (matcher.find()) {
-                    System.out.println("Правильно");
-                } else {
-                    wrongWords.add(converter.getWord(random));
-                    System.out.println("Не правильно! " + "Правильный вариант: " + converter.getWord(random));
+                isMistake = true;
+                for(String world : converter.getWord(random).getEnglishTrans()){
+                    Pattern pattern = Pattern.compile(world);
+                    Matcher matcher = pattern.matcher(input);
+                    if (matcher.find()) {
+                        System.out.println("Right");
+                        isMistake = false;
+                    }
+                }
+                if(isMistake){
+                    System.out.println("Wrong! " + "Correct option: " + converter.getWord(random));
+                    System.out.println("Do you want to add this translation?(Y/N)");
+                    String inputAgree = new Scanner(System.in).nextLine().trim().toLowerCase();
+                    if (inputAgree.equals("y")){
+                        converter.getWord(random).setForeignTrans(input);
+                        System.out.println("The word was added into dictionary");
+                    }else {
+                        wrongWords.add(converter.getWord(random));
+                        System.out.println("The word was entered into the mistake dictionary");
+                    }
                 }
             }
         }
